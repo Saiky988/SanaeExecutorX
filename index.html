@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sanae Executors</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #1a1a2e;
+      color: white;
+    }
+
+    header {
+      background-color: #0f0f1d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      position: relative;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 600;
+      background: linear-gradient(to right, #ff00c8, #6e7bff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .menu-btn {
+      font-size: 28px;
+      cursor: pointer;
+      position: relative;
+      z-index: 10;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background: rgba(35, 35, 66, 0.95);
+      backdrop-filter: blur(6px);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      pointer-events: none;
+    }
+
+    .dropdown.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 12px 20px;
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      transition: background 0.2s;
+    }
+
+    .dropdown a:hover {
+      background-color: #2f2f5e;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h2 {
+      margin-top: 40px;
+      border-bottom: 1px solid #444;
+      padding-bottom: 5px;
+    }
+
+    .executor-card {
+      background-color: #292950;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .executor-card h3 {
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .download-btn {
+      background: linear-gradient(to right, #ff00c8, #6e7bff);
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .download-btn:hover {
+      opacity: 0.85;
+    }
+
+    .status {
+      background: #00ffab20;
+      color: #00ffab;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      margin-top: 5px;
+      display: inline-block;
+    }
+
+    @media screen and (max-width: 600px) {
+      .executor-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .download-btn {
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="logo">SanaeEx</div>
+  <div class="menu-btn" onclick="toggleDropdown()">☰</div>
+
+  <!-- Dropdown mini -->
+  <div class="dropdown" id="dropdownMenu">
+    <a href="#android">Android</a>
+    <a href="#ios">iOS</a>
+    <a href="https://discord.gg/tdqzBaj7" target="_blank">Discord</a>
+  </div>
+</header>
+
+<!-- Nội dung -->
+<div class="container">
+  <h2 id="android">Android Executors</h2>
+
+  <div class="executor-card">
+    <div>
+      <h3>CodeX</h3>
+      <div class="status">🟢 Working</div>
+    </div>
+    <a class="download-btn" href="https://stickx.top/download/CodeX.apk">Download</a>
+  </div>
+
+  <div class="executor-card">
+    <div>
+      <h3>Fluxus</h3>
+      <div class="status">🟢 Working</div>
+    </div>
+    <a class="download-btn" href="https://webfiles.pro/file/Fluxus.apk">Download</a>
+  </div>
+
+  <div class="executor-card">
+    <div>
+      <h3>Delta X Global</h3>
+      <div class="status">🟢 Working</div>
+    </div>
+    <a class="download-btn" href="https://delta.webfiles.pro/file/Delta-2.681.805.apk">Download</a>
+  </div>
+
+  <div class="executor-card">
+    <div>
+      <h3>KRNL Global</h3>
+      <div class="status">🟢 Working</div>
+    </div>
+    <a class="download-btn" href="https://krnl.webfiles.pro/file/krnl_release_2.681.805_2025.7.14_37.apk">Download</a>
+  </div>
+
+  <div class="executor-card">
+    <div>
+      <h3>KRNL VNG</h3>
+      <div class="status">🟢 Working</div>
+    </div>
+    <a class="download-btn" href="https://krnl.webfiles.pro/file/krnl_vng_release_2.681.805_2025.7.22_15.apk">Download</a>
+  </div>
+
+  <!-- Thêm 10 executor Android ở đây -->
+
+  <h2 id="ios">iOS Executors</h2>
+
+  <div class="executor-card">
+    <div>
+      <h3>Delta X iOS</h3>
+      <div class="status">🟢 Working</div>
+    </div>
+    <a class="download-btn" href="https://delta.webfiles.pro/file/Delta-2.681.805.ipa">Download</a>
+  </div>
+
+  <div class="executor-card">
+    <div>
+      <h3>vvv</h3>
+      <div class="status">🟢 Working</div>
+    </div>
+    <a class="download-btn" href="#">Download</a>
+  </div>
+
+  <div class="executor-card">
+    <div>
+      <h3>vvv</h3>
+      <div class="status">🟢 Working</div>
+    </div>
+    <a class="download-btn" href="#">Download</a>
+  </div>
+</div>
+
+<!-- Script -->
+<script>
+  function toggleDropdown() {
+    const menu = document.getElementById('dropdownMenu');
+    menu.classList.toggle('show');
+  }
+
+  // Ẩn dropdown nếu click ra ngoài
+  window.addEventListener('click', function (e) {
+    const menu = document.getElementById('dropdownMenu');
+    const button = document.querySelector('.menu-btn');
+    if (!menu.contains(e.target) && !button.contains(e.target)) {
+      menu.classList.remove('show');
+    }
+  });
+
+  // Ẩn dropdown khi click vào một lựa chọn
+  window.addEventListener('DOMContentLoaded', function () {
+    const menuItems = document.querySelectorAll('#dropdownMenu a');
+    const menu = document.getElementById('dropdownMenu');
+    menuItems.forEach(item => {
+      item.addEventListener('click', () => {
+        menu.classList.remove('show');
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
