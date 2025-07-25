@@ -11,6 +11,7 @@
       font-family: 'Poppins', sans-serif;
       background-color: #1a1a2e;
       color: white;
+      padding-top: 50px; /* để tránh header đè */
     }
 
     header {
@@ -19,7 +20,11 @@
       justify-content: space-between;
       align-items: center;
       padding: 15px 20px;
-      position: relative;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
     }
 
     .logo {
@@ -28,19 +33,24 @@
       background: linear-gradient(to right, #ff00c8, #6e7bff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      cursor: pointer;
+    }
+
+    .menu-container {
+      position: relative;
     }
 
     .menu-btn {
       font-size: 28px;
       cursor: pointer;
-      position: relative;
       z-index: 10;
     }
 
     .dropdown {
       position: absolute;
-      top: 60px;
-      right: 20px;
+      top: 65px;
+      right: 0;
+      margin-bottom: 20px;
       background: rgba(35, 35, 66, 0.95);
       backdrop-filter: blur(6px);
       border-radius: 12px;
@@ -50,6 +60,7 @@
       transform: translateY(-10px);
       transition: opacity 0.25s ease, transform 0.25s ease;
       pointer-events: none;
+      min-width: 160px;
     }
 
     .dropdown.show {
@@ -81,6 +92,7 @@
       margin-top: 40px;
       border-bottom: 1px solid #444;
       padding-bottom: 5px;
+      scroll-margin-top: 100px; /* 👈 Thêm dòng này */
     }
 
     .executor-card {
@@ -92,6 +104,12 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .executor-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 15px #6e7bff50;
     }
 
     .executor-card h3 {
@@ -133,22 +151,30 @@
         margin-top: 10px;
       }
     }
+
+    footer {
+      text-align: center;
+      color: #bbb;
+      font-size: 14px;
+      margin: 40px 0 20px;
+      padding-bottom: 20px;
+    }
   </style>
 </head>
 <body>
 
 <!-- Header -->
 <header>
-  <div class="logo">SanaeEx</div>
-  <div class="menu-btn" onclick="toggleDropdown()">☰</div>
-
-  <!-- Dropdown mini -->
-  <div class="dropdown" id="dropdownMenu">
-    <a href="#android">Android</a>
-    <a href="#android-vng">Android VNG</a>
-    <a href="#ios">iOS</a>
-    <a href="#ios-vng">iOS VNG</a>
-    <a href="https://discord.gg/tdqzBaj7" target="_blank">Discord</a>
+  <div class="logo" onclick="window.location.href='https://saiky988.github.io/SanaeExecutorX/'">SanaeEx</div>
+  <div class="menu-container">
+    <div class="menu-btn" onclick="toggleDropdown()">☰</div>
+    <div class="dropdown" id="dropdownMenu">
+      <a href="#android">Android</a>
+      <a href="#android-vng">Android VNG</a>
+      <a href="#ios">iOS</a>
+      <a href="#ios-vng">iOS VNG</a>
+      <a href="https://discord.gg/tdqzBaj7" target="_blank">Discord</a>
+    </div>
   </div>
 </header>
 
@@ -318,10 +344,11 @@
 <!-- iOS VNG -->
   <h2 id="ios-vng">iOS VNG Executors[soon]</h2>
 
-
-
 </div>
 
+<footer>
+  © 2025 SanaeEx - Updated on 06/30/2025 | made by: <strong>Saiky</strong>
+</footer>
 
 <!-- Script -->
 <script>
@@ -330,7 +357,7 @@
     menu.classList.toggle('show');
   }
 
-  // Ẩn dropdown nếu click ra ngoài
+  // Đóng dropdown khi click ra ngoài
   window.addEventListener('click', function (e) {
     const menu = document.getElementById('dropdownMenu');
     const button = document.querySelector('.menu-btn');
@@ -339,13 +366,12 @@
     }
   });
 
-  // Ẩn dropdown khi click vào một lựa chọn
+  // Đóng dropdown khi chọn mục
   window.addEventListener('DOMContentLoaded', function () {
-    const menuItems = document.querySelectorAll('#dropdownMenu a');
-    const menu = document.getElementById('dropdownMenu');
-    menuItems.forEach(item => {
+    const items = document.querySelectorAll('#dropdownMenu a');
+    items.forEach(item => {
       item.addEventListener('click', () => {
-        menu.classList.remove('show');
+        document.getElementById('dropdownMenu').classList.remove('show');
       });
     });
   });
