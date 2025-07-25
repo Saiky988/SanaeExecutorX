@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sanae Executors</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Rubik:wght@600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Nunito', sans-serif;
       background-color: #1a1a2e;
       color: white;
       padding-top: 50px; /* để tránh header đè */
@@ -28,12 +28,27 @@
     }
 
     .logo {
+      font-family: 'Rubik', sans-serif;
       font-size: 24px;
       font-weight: 600;
-      background: linear-gradient(to right, #ff00c8, #6e7bff);
+      background: linear-gradient(270deg, #ff00c8, #6e7bff, #ff00c8);
+      background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      animation: waveColor 5s ease-in-out infinite;
       cursor: pointer;
+    }
+
+    @keyframes waveColor {
+      0% {
+      background-position: 0% 50%;
+      }
+      50% {
+      background-position: 100% 50%;
+      }
+      100% {
+      background-position: 0% 50%;
+      }
     }
 
     .menu-container {
@@ -92,7 +107,7 @@
       margin-top: 40px;
       border-bottom: 1px solid #444;
       padding-bottom: 5px;
-      scroll-margin-top: 100px; /* 👈 Thêm dòng này */
+      scroll-margin-top: 100px;
     }
 
     .executor-card {
@@ -118,19 +133,50 @@
     }
 
     .download-btn {
-      background: linear-gradient(to right, #ff00c8, #6e7bff);
+      position: relative;
+      display: inline-block;
+      padding: 10px 20px;
+      font-weight: bold;
       color: white;
       text-decoration: none;
-      padding: 10px 20px;
       border-radius: 999px;
-      font-weight: bold;
-      transition: 0.2s;
+      overflow: hidden;
+      background: linear-gradient(to right, #ff00c8, #6e7bff);
+      transition: 0.3s ease;
+    }
+
+    .download-btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -50%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(to right, #ff00c8, #6e7bff);
+      opacity: 0.3;
+      z-index: 0;
+      transform: skewX(-20deg);
+      animation: wave 4s ease-in-out          infinite alternate;
+      animation-delay: calc(-1s * var(--delay, 0));
+    }
+
+    .download-btn span {
+      position: relative;
+      z-index: 1;
     }
 
     .download-btn:hover {
-      opacity: 0.85;
+      opacity: 0.9;
     }
 
+    @keyframes wave {
+       0% {
+         transform: translateX(-25%) skewX(-20deg);
+       }
+       100% {
+         transform: translateX(25%) skewX(-20deg);
+       }
+    }
     .status {
       background: #00ffab20;
       color: #00ffab;
@@ -173,7 +219,7 @@
       <a href="#android-vng">Android VNG</a>
       <a href="#ios">iOS</a>
       <a href="#ios-vng">iOS VNG</a>
-      <a href="https://discord.gg/#" target="_blank">Discord</a>
+      <a href="https://discord.gg/tdqzBaj7" target="_blank">Discord</a>
     </div>
   </div>
 </header>
@@ -352,6 +398,7 @@
 
 <!-- Script -->
 <script>
+  // Dropdown toggle
   function toggleDropdown() {
     const menu = document.getElementById('dropdownMenu');
     menu.classList.toggle('show');
@@ -374,6 +421,39 @@
         document.getElementById('dropdownMenu').classList.remove('show');
       });
     });
+
+    // Hiệu ứng gõ chữ cho logo
+    const texts = ["SanaeEx", "Sanae Executor", "For Android & iOS"];
+    const el = document.getElementById("logo-text");
+
+    let index = 0;
+    let char = 0;
+    let isDeleting = false;
+
+    function type() {
+      const current = texts[index];
+      el.textContent = current.substring(0, char);
+
+      if (!isDeleting) {
+        char++;
+        if (char === current.length + 1) {
+          isDeleting = true;
+          setTimeout(type, 2000);
+          return;
+        }
+      } else {
+        char--;
+        if (char === 0) {
+          isDeleting = false;
+          index = (index + 1) % texts.length;
+        }
+      }
+
+      const speed = isDeleting ? 50 : 80;
+      setTimeout(type, speed + Math.random() * 50);
+    }
+
+    type();
   });
 </script>
 
